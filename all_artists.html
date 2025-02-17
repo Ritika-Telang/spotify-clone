@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Artists</title>
+</head>
+<body>
+    <h1>All Popular Artists</h1>
+    <div id="all-artists"></div>
+
+    <script>
+        fetch("/all_artists")
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById("all-artists");
+            data.artists.forEach(artist => {
+                const div = document.createElement("div");
+                div.innerHTML = `<h3>${artist.name}</h3><img src="${artist.images[0].url}" width="100">`;
+                container.appendChild(div);
+            });
+        });
+    </script>
+</body>
+</html>
